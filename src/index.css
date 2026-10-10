@@ -1,0 +1,18 @@
+@import url(https://fonts.googleapis.com/css?family=Outfit:100,200,300,regular,500,600,700,800,900);
+@import "tailwindcss";
+
+:root {
+  --primary-color: #F6F3EB;
+  --secondary-color: #20213E;
+  --accent-color: #D1AC55;
+  --card-color: #FFFDF8;
+  --primary-font: 'Outfit', sans-serif; 
+}
+
+@theme {
+  --color-primary: var(--primary-color);
+  --color-secondary: var(--secondary-color);
+  --color-accent: var(--accent-color);
+  --color-card: var(--card-color);
+   --font-primary: var(--primary-font);
+}
