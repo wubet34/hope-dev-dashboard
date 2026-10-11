@@ -38,7 +38,7 @@ const Dashboard = () => {
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
-          className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300'
+          className='fixed inset-0 bg-secondary/40 backdrop-blur-sm z-40 md:hidden transition-opacity duration-300'
         />
       )}
 
@@ -46,7 +46,7 @@ const Dashboard = () => {
       <aside
         className={`
           fixed md:sticky top-0 left-0 z-50 md:z-0
-          h-screen w-64 bg-card border-r border-secondary/5 p-6
+          h-screen w-64 bg-card border-r border-secondary/10 p-6
           flex flex-col
           transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
@@ -55,20 +55,26 @@ const Dashboard = () => {
         {/* Close button on mobile */}
         <button
           onClick={() => setSidebarOpen(false)}
-          className='md:hidden absolute top-4 right-4 p-2 rounded-xl hover:bg-primary/50 text-secondary/70 hover:text-secondary transition-all duration-200'
+          className='md:hidden absolute top-4 right-4 p-2 rounded-xl hover:bg-primary text-secondary/60 hover:text-secondary transition-all duration-200'
           aria-label="Close sidebar"
         >
           <X size={18} />
         </button>
 
+        {/* Brand */}
         <div className='mb-10'>
-          <h1 className='text-2xl font-extrabold tracking-tight'>Dashboard</h1>
-          <p className='text-secondary/60 text-xs font-medium mt-1 truncate'>
+          <div className='flex items-center gap-2 mb-1'>
+            <div className='w-8 h-8 rounded-lg bg-accent flex items-center justify-center'>
+              <span className='text-sm font-extrabold text-card'>A</span>
+            </div>
+            <h1 className='text-xl font-extrabold tracking-tight text-secondary'>Dashboard</h1>
+          </div>
+          <p className='text-secondary/50 text-xs font-medium mt-1 truncate'>
             Welcome, {user?.name || 'User'}
           </p>
         </div>
 
-        <nav className='flex-1 space-y-2 overflow-y-auto'>
+        <nav className='flex-1 space-y-1.5 overflow-y-auto'>
           {navItems.map((item) => {
             const Icon = item.icon
             return (
@@ -79,8 +85,8 @@ const Dashboard = () => {
                 className={`
                   flex items-center gap-3 p-3 rounded-xl text-sm transition-all duration-200
                   ${item.active
-                    ? 'bg-accent/10 text-accent font-semibold'
-                    : 'hover:bg-primary/50 text-secondary/70 hover:text-secondary font-medium'}
+                    ? 'bg-accent text-card font-semibold shadow-md shadow-accent/30'
+                    : 'hover:bg-primary text-secondary/70 hover:text-secondary font-medium'}
                 `}
               >
                 <Icon size={18} />
@@ -92,7 +98,7 @@ const Dashboard = () => {
 
         <button
           onClick={logout}
-          className='flex items-center gap-3 p-3 rounded-xl hover:bg-red-500/10 text-secondary/70 hover:text-red-500 font-medium text-sm transition-all duration-200 mt-4'
+          className='flex items-center gap-3 p-3 rounded-xl hover:bg-red-500/10 text-secondary/60 hover:text-red-500 font-medium text-sm transition-all duration-200 mt-4'
         >
           <LogOut size={18} />
           Logout
@@ -107,27 +113,27 @@ const Dashboard = () => {
           <div className='flex items-center gap-3'>
             <button
               onClick={() => setSidebarOpen(true)}
-              className='md:hidden p-2.5 rounded-xl bg-card border border-secondary/5 hover:bg-card/80 text-secondary transition-all duration-200'
+              className='md:hidden p-2.5 rounded-xl bg-card border border-secondary/10 hover:bg-primary text-secondary transition-all duration-200'
               aria-label="Open sidebar"
             >
               <Menu size={20} />
             </button>
             <div>
-              <h1 className='text-xl sm:text-2xl font-extrabold tracking-tight'>Overview</h1>
-              <p className='text-secondary/60 text-xs sm:text-sm font-medium mt-0.5 hidden sm:block'>
+              <h1 className='text-xl sm:text-2xl font-extrabold tracking-tight text-secondary'>Overview</h1>
+              <p className='text-secondary/50 text-xs sm:text-sm font-medium mt-0.5 hidden sm:block'>
                 Welcome back, {user?.name}
               </p>
             </div>
           </div>
 
           {/* User chip */}
-          <div className='flex items-center gap-3 p-2 pr-3 sm:pr-4 rounded-xl bg-card border border-secondary/5'>
-            <div className='w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center'>
-              <span className='text-xs font-bold text-accent uppercase'>
+          <div className='flex items-center gap-3 p-2 pr-3 sm:pr-4 rounded-xl bg-card border border-secondary/10'>
+            <div className='w-8 h-8 rounded-full bg-accent flex items-center justify-center'>
+              <span className='text-xs font-bold text-card uppercase'>
                 {user?.name?.[0] || 'U'}
               </span>
             </div>
-            <span className='text-sm font-semibold hidden sm:block truncate max-w-32'>
+            <span className='text-sm font-semibold hidden sm:block truncate max-w-32 text-secondary'>
               {user?.name}
             </span>
           </div>
@@ -140,29 +146,33 @@ const Dashboard = () => {
             return (
               <div
                 key={index}
-                className='p-5 sm:p-6 rounded-2xl bg-card border border-secondary/5 shadow-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-xl'
+                className='p-5 sm:p-6 rounded-2xl bg-card border border-secondary/10 shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-[1.02]'
               >
                 <div className='flex items-center justify-between mb-4'>
-                  <div className='p-2.5 rounded-xl bg-accent/10'>
+                  <div className='p-2.5 rounded-xl bg-accent/15'>
                     <Icon size={20} className='text-accent' />
                   </div>
-                  <span className='text-xs font-semibold text-green-500 bg-green-500/10 px-2 py-1 rounded-lg'>
+                  <span className='text-xs font-semibold text-green-700 bg-green-500/15 px-2 py-1 rounded-lg'>
                     {stat.change}
                   </span>
                 </div>
-                <h3 className='text-xl sm:text-2xl font-extrabold tracking-tight mb-1'>{stat.value}</h3>
-                <p className='text-secondary/60 text-xs font-medium tracking-wider'>{stat.label}</p>
+                <h3 className='text-xl sm:text-2xl font-extrabold tracking-tight mb-1 text-secondary'>
+                  {stat.value}
+                </h3>
+                <p className='text-secondary/50 text-xs font-medium tracking-wider'>{stat.label}</p>
               </div>
             )
           })}
         </div>
 
         {/* Recent Activity */}
-        <div className='p-5 sm:p-8 rounded-3xl bg-card border border-secondary/5 shadow-2xl'>
+        <div className='p-5 sm:p-8 rounded-3xl bg-card border border-secondary/10 shadow-sm'>
           <div className='flex items-center justify-between mb-6'>
             <div>
-              <h2 className='text-lg sm:text-xl font-extrabold tracking-tight'>Recent Activity</h2>
-              <p className='text-secondary/60 text-xs sm:text-sm font-medium mt-1'>
+              <h2 className='text-lg sm:text-xl font-extrabold tracking-tight text-secondary'>
+                Recent Activity
+              </h2>
+              <p className='text-secondary/50 text-xs sm:text-sm font-medium mt-1'>
                 Latest actions from your team
               </p>
             </div>
@@ -175,17 +185,17 @@ const Dashboard = () => {
             {recentActivity.map((activity, index) => (
               <div
                 key={index}
-                className='flex items-center justify-between p-3 sm:p-4 rounded-xl border border-secondary/10 bg-primary/30 transition-all duration-200 hover:border-accent/30 hover:bg-primary/50'
+                className='flex items-center justify-between p-3 sm:p-4 rounded-xl border border-secondary/10 bg-primary/60 transition-all duration-200 hover:border-accent/50 hover:bg-primary'
               >
                 <div className='flex items-center gap-3 sm:gap-4 min-w-0'>
-                  <div className='w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-full bg-accent/10 flex items-center justify-center'>
+                  <div className='w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-full bg-accent/20 flex items-center justify-center'>
                     <span className='text-xs sm:text-sm font-bold text-accent'>
                       {activity.user.split(' ').map(n => n[0]).join('')}
                     </span>
                   </div>
                   <div className='min-w-0'>
-                    <p className='text-sm font-semibold truncate'>{activity.user}</p>
-                    <p className='text-xs text-secondary/60 font-medium truncate'>{activity.action}</p>
+                    <p className='text-sm font-semibold truncate text-secondary'>{activity.user}</p>
+                    <p className='text-xs text-secondary/50 font-medium truncate'>{activity.action}</p>
                   </div>
                 </div>
                 <span className='text-xs text-secondary/40 font-medium whitespace-nowrap ml-3 hidden sm:block'>
